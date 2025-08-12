@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+
+{% block title %}UI Demo - Enhanced Features{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="jumbotron text-center">
+                <h1 class="display-4 text-glow">
+                    <i class="fas fa-magic shimmer"></i> Enhanced UI Features
+                </h1>
+                <p class="lead">Experience the beautiful glass morphism design with interactive effects</p>
+                <div class="mt-4">
+                    <button class="btn btn-primary btn-lg me-3 glow">
+                        <i class="fas fa-rocket"></i> Primary Action
+                    </button>
+                    <button class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-star"></i> Secondary Action
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Cards Demo -->
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card interactive-hover fade-in-up">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-palette"></i> Glass Morphism
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>Beautiful translucent cards with blur effects and smooth animations.</p>
+                    <div class="d-flex justify-content-between">
+                        <span class="badge bg-success">Active</span>
+                        <span class="badge bg-info">Modern</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card interactive-hover slide-in-left">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-mouse-pointer"></i> Interactive Effects
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>Hover effects, animations, and responsive interactions throughout the interface.</p>
+                    <div class="progress mb-2">
+                        <div class="progress-bar bg-warning" style="width: 85%"></div>
+                    </div>
+                    <small>Interactivity Level: 85%</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card interactive-hover slide-in-right">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-mobile-alt"></i> Responsive Design
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>Fully responsive design that works beautifully on all devices and screen sizes.</p>
+                    <button class="btn btn-success btn-sm">
+                        <i class="fas fa-check"></i> Optimized
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Demo -->
+    <div class="row mb-5">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-edit"></i> Enhanced Form Elements
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Glass Input Field</label>
+                                <input type="text" class="form-control" placeholder="Type something...">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Glass Select</label>
+                                <select class="form-select">
+                                    <option>Choose option...</option>
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Demo -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-table"></i> Enhanced Table with Hover Effects
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Status</th>
+                                    <th>Performance</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Glass Morphism</strong></td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                    <td>Excellent</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Animations</strong></td>
+                                    <td><span class="badge bg-primary">Running</span></td>
+                                    <td>Smooth</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Responsiveness</strong></td>
+                                    <td><span class="badge bg-info">Optimized</span></td>
+                                    <td>Perfect</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>User Experience</strong></td>
+                                    <td><span class="badge bg-warning">Enhanced</span></td>
+                                    <td>Outstanding</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button Showcase -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-mouse-pointer"></i> Interactive Button Showcase
+                    </h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <button class="btn btn-primary me-2 mb-2">
+                            <i class="fas fa-plane"></i> Primary
+                        </button>
+                        <button class="btn btn-success me-2 mb-2">
+                            <i class="fas fa-check"></i> Success
+                        </button>
+                        <button class="btn btn-info me-2 mb-2">
+                            <i class="fas fa-info"></i> Info
+                        </button>
+                        <button class="btn btn-warning me-2 mb-2">
+                            <i class="fas fa-exclamation"></i> Warning
+                        </button>
+                        <button class="btn btn-secondary me-2 mb-2">
+                            <i class="fas fa-cog"></i> Secondary
+                        </button>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-outline-primary me-2 mb-2">
+                            <i class="fas fa-heart"></i> Outline Primary
+                        </button>
+                        <button class="btn btn-outline-success me-2 mb-2">
+                            <i class="fas fa-thumbs-up"></i> Outline Success
+                        </button>
+                    </div>
+                    <p class="text-muted">Hover over buttons to see the enhanced effects!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features List -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list-check"></i> Enhanced UI Features
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Glass morphism design with blur effects
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Smooth animations and transitions
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Interactive hover effects
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Particle background animations
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Enhanced form styling
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Responsive design for all devices
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Beautiful gradient backgrounds
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Enhanced typography and shadows
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Loading animations and states
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Modern glass scrollbars
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Demo-specific animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add extra sparkle to demo elements
+        const demoCards = document.querySelectorAll('.card');
+        demoCards.forEach((card, index) => {
+            card.style.animationDelay = (index * 0.1) + 's';
+            card.classList.add('fade-in-up');
+        });
+        
+        // Add click effects to buttons
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    });
+</script>
+
+<style>
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple-animation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+</style>
+{% endblock %}

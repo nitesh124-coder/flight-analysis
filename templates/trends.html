@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block title %}Market Trends - Airline Market Analyzer{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-chart-line"></i> Market Trends & Analysis
+        </h1>
+        <p class="lead">Comprehensive overview of airline booking market trends and patterns.</p>
+    </div>
+</div>
+
+<!-- Trending Routes -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-fire"></i> Trending Routes
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Route</th>
+                                <th>Volume</th>
+                                <th>Trend</th>
+                                <th>Change</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if trending_routes %}
+                                {% for route in trending_routes %}
+                                <tr>
+                                    <td><strong>{{ route.route }}</strong></td>
+                                    <td>{{ route.volume }} flights</td>
+                                    <td>
+                                        {% if route.trend == 'up' %}
+                                            <i class="fas fa-arrow-up text-success"></i> Increasing
+                                        {% elif route.trend == 'down' %}
+                                            <i class="fas fa-arrow-down text-danger"></i> Decreasing
+                                        {% else %}
+                                            <i class="fas fa-arrow-right text-secondary"></i> Stable
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if route.trend == 'up' %}
+                                            <span class="badge bg-success">{{ route.change }}</span>
+                                        {% elif route.trend == 'down' %}
+                                            <span class="badge bg-danger">{{ route.change }}</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">{{ route.change }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('search') }}?origin={{ route.route.split('-')[0] }}&destination={{ route.route.split('-')[1] }}" 
+                                           class="btn btn-sm btn-primary">
+                                            <i class="fas fa-search"></i> Analyze
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">Loading trending routes...</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Price Trends -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-dollar-sign"></i> Price Trend Analysis
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if price_trends %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Overall Market Trend</h6>
+                        <p class="lead">
+                            {% if price_trends.overall_trend == 'increasing' %}
+                                <i class="fas fa-arrow-up text-success"></i> Increasing
+                            {% elif price_trends.overall_trend == 'decreasing' %}
+                                <i class="fas fa-arrow-down text-danger"></i> Decreasing
+                            {% else %}
+                                <i class="fas fa-arrow-right text-secondary"></i> Stable
+                            {% endif %}
+                        </p>
+                        <p>Monthly Change: <strong>{{ price_trends.monthly_change }}</strong></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Seasonal Patterns</h6>
+                        <ul class="list-unstyled">
+                            <li><strong>Peak Season:</strong> {{ price_trends.seasonal_patterns.peak_season }}</li>
+                            <li><strong>Low Season:</strong> {{ price_trends.seasonal_patterns.low_season }}</li>
+                            <li><strong>Price Difference:</strong> {{ price_trends.seasonal_patterns.price_difference }}</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <h6>Forecast</h6>
+                        <div class="alert alert-info">
+                            <i class="fas fa-crystal-ball"></i>
+                            <strong>Next Month:</strong> {{ price_trends.forecast.next_month }} expected change<br>
+                            <strong>Next Quarter:</strong> {{ price_trends.forecast.next_quarter }} expected change
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <i class="fas fa-chart-line fa-3x text-muted"></i>
+                    <p class="mt-2 text-muted">Price trend analysis loading...</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-lightbulb"></i> Market Insights
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success">
+                    <h6><i class="fas fa-thumbs-up"></i> Opportunity</h6>
+                    <p class="mb-0">SYD-MEL route showing strong growth. Consider targeting business travelers on this corridor.</p>
+                </div>
+                
+                <div class="alert alert-warning">
+                    <h6><i class="fas fa-exclamation-triangle"></i> Watch</h6>
+                    <p class="mb-0">Weekend premiums are increasing. Monitor pricing strategies for leisure travelers.</p>
+                </div>
+                
+                <div class="alert alert-info">
+                    <h6><i class="fas fa-info-circle"></i> Tip</h6>
+                    <p class="mb-0">Book 21-45 days in advance for best prices. Share this insight with your guests.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Market Overview Charts -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-bar"></i> Route Popularity
+                </h5>
+            </div>
+            <div class="card-body">
+                <canvas id="routePopularityChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-pie"></i> Market Share by Airline
+                </h5>
+            </div>
+            <div class="card-body">
+                <canvas id="airlineMarketShare" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seasonal Analysis -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-calendar-alt"></i> Seasonal Demand Patterns
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h6>Summer (Dec-Feb)</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-danger" style="width: 90%"></div>
+                            </div>
+                            <small class="text-muted">Peak Season - High Demand</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h6>Autumn (Mar-May)</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-warning" style="width: 60%"></div>
+                            </div>
+                            <small class="text-muted">Moderate Demand</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h6>Winter (Jun-Aug)</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" style="width: 75%"></div>
+                            </div>
+                            <small class="text-muted">Business Travel Peak</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <h6>Spring (Sep-Nov)</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" style="width: 70%"></div>
+                            </div>
+                            <small class="text-muted">Growing Demand</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h6>Key Insights:</h6>
+                    <ul>
+                        <li><strong>December-January:</strong> Highest prices and demand due to holiday travel</li>
+                        <li><strong>February-March:</strong> Best value period with lower prices</li>
+                        <li><strong>July:</strong> Winter school holidays drive domestic travel</li>
+                        <li><strong>September-November:</strong> Business travel increases, stable pricing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Route Popularity Chart
+    const routeCtx = document.getElementById('routePopularityChart').getContext('2d');
+    new Chart(routeCtx, {
+        type: 'bar',
+        data: {
+            labels: ['SYD-MEL', 'MEL-SYD', 'SYD-BNE', 'BNE-SYD', 'MEL-BNE'],
+            datasets: [{
+                label: 'Flight Volume',
+                data: [1250, 1180, 890, 845, 650],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 205, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Airline Market Share Chart
+    const airlineCtx = document.getElementById('airlineMarketShare').getContext('2d');
+    new Chart(airlineCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Qantas', 'Virgin Australia', 'Jetstar', 'Tiger Airways', 'Others'],
+            datasets: [{
+                data: [35, 28, 20, 12, 5],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 205, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

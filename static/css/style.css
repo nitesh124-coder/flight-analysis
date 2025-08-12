@@ -1,0 +1,1466 @@
+/* Modern Airline Market Analyzer UI */
+
+/* CSS Variables for Scallop Seashell color template */
+:root {
+    /* Scallop Seashell Color Palette */
+    --scallop-seashell: #e7d2cc;
+    --pewter: #b9b7bd;
+    --gray: #868b8e;
+    --ivory: #eeede7;
+
+    /* Primary colors based on the palette */
+    --primary: #b9b7bd;
+    --primary-hover: #a8a5ab;
+    --secondary: #868b8e;
+    --success: #8b9e8b;
+    --warning: #d4b896;
+    --danger: #c49b9b;
+    --info: #9bb5c4;
+
+    /* Background colors */
+    --bg-primary: #eeede7;
+    --bg-secondary: #e7d2cc;
+    --bg-tertiary: #f5f4f0;
+    --bg-smooth: linear-gradient(135deg, #eeede7 0%, #e7d2cc 100%);
+    --bg-card: rgba(238, 237, 231, 0.95);
+
+    /* Text colors - Much darker for better visibility */
+    --text-primary: #1a1a1a;
+    --text-secondary: #2d2d2d;
+    --text-muted: #4a4a4a;
+    --text-dark: #0f0f0f;
+    --text-light: #3a3a3a;
+
+    /* Border colors */
+    --border-light: rgba(185, 183, 189, 0.3);
+    --border-medium: rgba(185, 183, 189, 0.5);
+    --border-dark: #b9b7bd;
+
+    /* Shadows with warm tones */
+    --shadow-sm: 0 1px 2px 0 rgba(134, 139, 142, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(134, 139, 142, 0.15), 0 2px 4px -2px rgba(134, 139, 142, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(134, 139, 142, 0.2), 0 4px 6px -4px rgba(134, 139, 142, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(134, 139, 142, 0.25), 0 8px 10px -6px rgba(134, 139, 142, 0.1);
+
+    /* Border radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+}
+
+/* Crimson Text + Edu NSW ACT Cursive classes */
+.edu-nsw-act-cursive-default {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+.edu-nsw-act-cursive-medium { font-family: "Edu NSW ACT Cursive", cursive; font-optical-sizing: auto; font-weight: 500; font-style: normal; }
+.edu-nsw-act-cursive-semibold { font-family: "Edu NSW ACT Cursive", cursive; font-optical-sizing: auto; font-weight: 600; font-style: normal; }
+.edu-nsw-act-cursive-bold { font-family: "Edu NSW ACT Cursive", cursive; font-optical-sizing: auto; font-weight: 700; font-style: normal; }
+
+.crimson-text-regular { font-family: "Crimson Text", serif; font-weight: 400; font-style: normal; }
+.crimson-text-semibold { font-family: "Crimson Text", serif; font-weight: 600; font-style: normal; }
+.crimson-text-bold { font-family: "Crimson Text", serif; font-weight: 700; font-style: normal; }
+.crimson-text-regular-italic { font-family: "Crimson Text", serif; font-weight: 400; font-style: italic; }
+.crimson-text-semibold-italic { font-family: "Crimson Text", serif; font-weight: 600; font-style: italic; }
+.crimson-text-bold-italic { font-family: "Crimson Text", serif; font-weight: 700; font-style: italic; }
+
+/* Base typography: use Crimson Text for body */
+body {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    background: var(--bg-smooth);
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+
+/* Remove heavy overlay for a cleaner look */
+body::after {
+    content: none;
+}
+
+/* Modern Navigation with Scallop Seashell theme */
+.navbar {
+    background: var(--bg-primary) !important;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-family: "Crimson Text", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.6rem;
+    color: var(--text-dark) !important;
+    transition: color 0.2s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--primary) !important;
+}
+
+.navbar-brand i {
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.navbar-nav .nav-link {
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--text-dark) !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: var(--radius-md);
+    margin: 0 0.25rem;
+    transition: all 0.2s ease;
+    position: relative;
+    font-size: 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary) !important;
+    background: var(--bg-tertiary);
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--primary) !important;
+    background: var(--bg-tertiary);
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Modern Cards with richer colors and shadows */
+.card {
+    background: linear-gradient(180deg, rgba(250, 249, 246, 0.95) 0%, rgba(238, 237, 231, 0.95) 100%);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    overflow: hidden;
+}
+
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12), 0 6px 12px rgba(0,0,0,0.10);
+    border-color: var(--border-medium);
+    background: linear-gradient(180deg, rgba(250, 249, 246, 0.98) 0%, rgba(238, 237, 231, 0.98) 100%);
+}
+
+/* Accent top border using palette */
+.card.accent-primary { border-top: 3px solid var(--pewter); }
+.card.accent-secondary { border-top: 3px solid var(--scallop-seashell); }
+.card.accent-gray { border-top: 3px solid var(--gray); }
+
+.card-header {
+    background: linear-gradient(135deg, var(--pewter) 0%, var(--scallop-seashell) 100%);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.card-body {
+    padding: 1.5rem;
+    color: var(--text-dark);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.card-body .card-title {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+}
+
+.card-body .card-text {
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.card-body p {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Modern Buttons with Scallop Seashell theme */
+.btn {
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    font-style: normal;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--pewter) 0%, var(--gray) 100%);
+    color: white;
+    border: 1px solid var(--border-medium);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--gray) 0%, var(--pewter) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--scallop-seashell) 0%, var(--pewter) 100%);
+    color: var(--text-dark);
+    border: 1px solid var(--border-medium);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, var(--pewter) 0%, var(--scallop-seashell) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--text-dark);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success) 0%, #7a8d7a 100%);
+    color: white;
+    border: 1px solid var(--border-medium);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #7a8d7a 0%, var(--success) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: white;
+}
+
+.btn-outline-primary {
+    background: transparent;
+    color: var(--pewter);
+    border: 2px solid var(--pewter);
+}
+
+.btn-outline-primary:hover {
+    background: var(--pewter);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--pewter);
+}
+
+.btn-lg {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    border-radius: var(--radius-lg);
+}
+
+.btn-sm {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.8125rem;
+}
+
+
+/* Modern Hero Section with Scallop Seashell theme */
+.jumbotron {
+    background: linear-gradient(135deg, var(--pewter) 0%, var(--gray) 100%);
+    border-radius: var(--radius-xl);
+    padding: 4rem 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.jumbotron::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+}
+
+.jumbotron h1 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.jumbotron .lead {
+    font-size: 1.125rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%) !important;
+}
+
+/* Stats Cards */
+.card.bg-primary,
+.card.bg-success,
+.card.bg-info,
+.card.bg-warning,
+.card.bg-danger {
+    border: none;
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+}
+
+.card.bg-success {
+    background: linear-gradient(135deg, var(--success-color), #1e7e34) !important;
+}
+
+.card.bg-info {
+    background: linear-gradient(135deg, var(--info-color), #117a8b) !important;
+}
+
+.card.bg-warning {
+    background: linear-gradient(135deg, var(--warning-color), #e0a800) !important;
+}
+
+.card.bg-danger {
+    background: linear-gradient(135deg, var(--danger-color), #bd2130) !important;
+}
+
+/* Modern Forms */
+.form-control,
+.form-select {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    background: rgba(238, 237, 231, 0.8);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    color: var(--text-dark);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--pewter);
+    box-shadow: 0 0 0 3px rgba(185, 183, 189, 0.2);
+    outline: none;
+    background: rgba(238, 237, 231, 0.95);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-label {
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.form-text {
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+}
+
+/* Input Groups */
+.input-group-text {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+}
+
+/* Modern Tables */
+.table-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.table {
+    margin-bottom: 0;
+    background: transparent;
+}
+
+.table thead th {
+    font-family: "Crimson Text", serif;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--scallop-seashell) 0%, var(--pewter) 100%);
+    color: var(--text-dark);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.table tbody tr:hover {
+    background: rgba(231, 210, 204, 0.3);
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table tbody td {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    color: var(--text-dark);
+    border: none;
+    font-size: 1rem;
+}
+
+.table tbody td strong {
+    font-family: "Crimson Text", serif;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--text-dark);
+}
+
+.table-responsive {
+    border-radius: var(--radius-lg);
+}
+
+/* Modern Badges */
+.badge {
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+
+/* Rich badges with subtle gradients and shadows */
+.badge.bg-success { background: linear-gradient(135deg, #16a34a, #22c55e) !important; box-shadow: 0 2px 6px rgba(34,197,94,0.35); }
+.badge.bg-info { background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important; box-shadow: 0 2px 6px rgba(56,189,248,0.35); }
+.badge.bg-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24) !important; color: #1f2937 !important; box-shadow: 0 2px 6px rgba(251,191,36,0.35); }
+.badge.bg-danger { background: linear-gradient(135deg, #ef4444, #f87171) !important; box-shadow: 0 2px 6px rgba(248,113,113,0.35); }
+.badge.bg-secondary { background: linear-gradient(135deg, #6b7280, #9ca3af) !important; box-shadow: 0 2px 6px rgba(156,163,175,0.35); }
+
+/* Themed colored cards with gradients */
+.card.bg-primary { background: linear-gradient(135deg, #4f46e5, #6366f1) !important; color: #fff; }
+.card.bg-success { background: linear-gradient(135deg, #16a34a, #22c55e) !important; color: #fff; }
+.card.bg-info { background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important; color: #fff; }
+.card.bg-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24) !important; color: #1f2937; }
+.card.bg-danger { background: linear-gradient(135deg, #ef4444, #f87171) !important; color: #fff; }
+
+.card.bg-primary .card-title,
+.card.bg-success .card-title,
+.card.bg-info .card-title,
+.card.bg-warning .card-title,
+.card.bg-danger .card-title { color: inherit; }
+
+/* Slightly stronger shadow for colored cards */
+.card.bg-primary, .card.bg-success, .card.bg-info, .card.bg-warning, .card.bg-danger {
+  box-shadow: 0 10px 22px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.12);
+}
+
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.01em;
+}
+
+.badge.bg-primary {
+    background: linear-gradient(135deg, var(--pewter) 0%, var(--gray) 100%) !important;
+    color: white;
+    border: 1px solid var(--border-medium);
+}
+
+.badge.bg-success {
+    background: linear-gradient(135deg, var(--success) 0%, #7a8d7a 100%) !important;
+    color: white;
+    border: 1px solid var(--border-medium);
+}
+
+.badge.bg-warning {
+    background: linear-gradient(135deg, var(--warning) 0%, #c4a882 100%) !important;
+    color: white;
+    border: 1px solid var(--border-medium);
+}
+
+.badge.bg-danger {
+    background: linear-gradient(135deg, var(--danger) 0%, #b48b8b 100%) !important;
+    color: white;
+    border: 1px solid var(--border-medium);
+}
+
+.badge.bg-info {
+    background: linear-gradient(135deg, var(--info) 0%, #8ba5b4 100%) !important;
+    color: white;
+    border: 1px solid var(--border-medium);
+}
+
+.badge.bg-secondary {
+    background: linear-gradient(135deg, var(--scallop-seashell) 0%, var(--pewter) 100%) !important;
+    color: var(--text-dark);
+    border: 1px solid var(--border-medium);
+}
+
+/* Modern Alerts */
+.alert {
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid;
+}
+
+.alert-primary {
+    background: rgba(185, 183, 189, 0.15);
+    color: var(--gray);
+    border-left-color: var(--pewter);
+}
+
+.alert-success {
+    background: rgba(139, 158, 139, 0.15);
+    color: var(--success);
+    border-left-color: var(--success);
+}
+
+.alert-warning {
+    background: rgba(212, 184, 150, 0.15);
+    color: var(--warning);
+    border-left-color: var(--warning);
+}
+
+.alert-danger {
+    background: rgba(196, 155, 155, 0.15);
+    color: var(--danger);
+    border-left-color: var(--danger);
+}
+
+/* Alerts */
+.alert {
+    border: none;
+    border-radius: 10px;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    border-left-color: var(--success-color);
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.alert-info {
+    border-left-color: var(--info-color);
+    background-color: rgba(23, 162, 184, 0.1);
+}
+
+.alert-warning {
+    border-left-color: var(--warning-color);
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.alert-danger {
+    border-left-color: var(--danger-color);
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* Progress Bars */
+.progress {
+    height: 10px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+
+/* Charts */
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin: 20px 0;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Advanced Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 123, 255, 0.6);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Staggered Animation Delays */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .jumbotron {
+        padding: 2rem 1rem;
+    }
+
+    .jumbotron h1 {
+        font-size: 2rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn-group .btn {
+        margin-bottom: 0.5rem;
+        border-radius: 25px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-fluid {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+}
+
+/* Modern Footer */
+footer {
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-light);
+    margin-top: 4rem;
+}
+
+footer .container {
+    padding: 2rem 0;
+}
+
+footer h5 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+footer p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+/* Enhanced Typography with Edu NSW ACT Cursive */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: var(--text-dark);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+h6 {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.lead {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+    font-weight: 400;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+    font-weight: 500;
+}
+
+.text-success {
+    color: var(--success) !important;
+    font-weight: 500;
+}
+
+/* Paragraph and text improvements */
+p {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.card-text {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.card-title {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+/* List improvements */
+.list-group-item {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+/* Strong text */
+strong, b {
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--text-dark);
+}
+
+/* General heading styles for better visibility */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark) !important;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* Ensure all text is dark and visible */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.lead {
+    color: var(--text-dark) !important;
+    font-weight: 400;
+}
+
+/* Fix image loading and display */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+}
+
+/* Ensure card content is visible */
+.card {
+    border: 1px solid var(--border-light);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--pewter) 0%, var(--scallop-seashell) 100%) !important;
+    color: var(--text-dark) !important;
+}
+
+/* Fix stat cards visibility */
+.stat-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: var(--text-dark) !important;
+}
+
+.stat-card h3 {
+    color: var(--text-dark) !important;
+}
+
+.stat-card p {
+    color: var(--text-secondary) !important;
+}
+
+/* Ensure all card titles and text are visible */
+.card .card-title {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+}
+
+.card .card-text {
+    color: var(--text-dark) !important;
+}
+
+.card h3 {
+    color: var(--text-dark) !important;
+}
+
+/* Fix icon colors */
+.text-success {
+    color: var(--success) !important;
+}
+
+.text-info {
+    color: var(--info) !important;
+}
+
+.text-warning {
+    color: var(--warning) !important;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+/* Modern Layout */
+main {
+    padding-top: 6rem;
+    min-height: calc(100vh - 200px);
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Spacing utilities */
+.mb-6 { margin-bottom: 3rem; }
+.mt-6 { margin-top: 3rem; }
+.py-6 { padding-top: 3rem; padding-bottom: 3rem; }
+
+/* Custom Utilities */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.border-radius-lg {
+    border-radius: 15px !important;
+}
+
+/* Chart Styling */
+.plotly-graph-div {
+    border-radius: 10px;
+}
+
+/* Status Indicators */
+.status-online {
+    color: var(--success-color);
+}
+
+.status-offline {
+    color: var(--danger-color);
+}
+
+.status-warning {
+    color: var(--warning-color);
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+/* Particle Effect Container */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: float 6s infinite linear;
+}
+
+.particle:nth-child(odd) {
+    animation-duration: 8s;
+    background: rgba(0, 123, 255, 0.3);
+}
+
+.particle:nth-child(even) {
+    animation-duration: 10s;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Interactive Hover Effects */
+.interactive-hover {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.interactive-hover:hover {
+    transform: translateY(-5px) scale(1.02);
+    filter: brightness(1.1);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Glassmorphism Utility Classes */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+}
+
+.glass-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.text-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.border-glow {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+    border: 1px solid rgba(0, 123, 255, 0.5);
+}
+
+/* Main Content Area Enhancements */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Alert Styling */
+.alert.glass {
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+.alert-success.glass {
+    background: rgba(40, 167, 69, 0.2);
+    border-color: rgba(40, 167, 69, 0.4);
+}
+
+.alert-info.glass {
+    background: rgba(23, 162, 184, 0.2);
+    border-color: rgba(23, 162, 184, 0.4);
+}
+
+.alert-warning.glass {
+    background: rgba(255, 193, 7, 0.2);
+    border-color: rgba(255, 193, 7, 0.4);
+}
+
+.alert-danger.glass {
+    background: rgba(220, 53, 69, 0.2);
+    border-color: rgba(220, 53, 69, 0.4);
+}
+
+/* Icon Animations */
+.fa-plane.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.fa-chart-line:hover {
+    animation: pulse 0.5s ease-in-out;
+}
+
+.fa-search:hover {
+    animation: spin 0.5s ease-in-out;
+}
+
+/* Enhanced Typography (no global white overrides to avoid flash/invisible text) */
+/* Keep headings and text using theme variables set elsewhere */
+
+/* Loading States */
+.btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Modern Responsive Design */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.125rem;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    main {
+        padding-top: 5rem;
+    }
+
+    .jumbotron {
+        padding: 2rem 1.5rem;
+    }
+
+    h1 { font-size: 1.875rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .jumbotron {
+        padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn + .btn {
+        margin-left: 0;
+    }
+
+    .table-responsive {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Focus States */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+}
+
+/* Text Contrast Improvements */
+.jumbotron h1,
+.jumbotron .lead,
+.jumbotron p {
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.jumbotron .lead {
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+/* Alert text improvements */
+.alert {
+    font-weight: 400;
+}
+
+.alert-primary {
+    color: #1e40af;
+    font-weight: 500;
+}
+
+.alert-success {
+    color: #166534;
+    font-weight: 500;
+}
+
+.alert-warning {
+    color: #92400e;
+    font-weight: 500;
+}
+
+.alert-danger {
+    color: #991b1b;
+    font-weight: 500;
+}
+
+/* Footer text improvements */
+footer h5 {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+footer p {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* List group improvements */
+.list-group-item {
+    color: var(--text-primary);
+    font-weight: 400;
+    border-color: var(--border-light);
+}
+
+.list-group-item span {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+/* Utility Classes */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+
+/* Text weight utilities */
+.fw-light { font-weight: 300; }
+.fw-normal { font-weight: 400; }
+.fw-medium { font-weight: 500; }
+.fw-semibold { font-weight: 600; }
+.fw-bold { font-weight: 700; }
+
+/* Dashboard specific improvements */
+.card .fa-2x {
+    opacity: 0.8;
+}
+
+.card h3 {
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card h4 {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card h5 {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.card h6 {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Button text improvements */
+.btn {
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+/* Input placeholder improvements */
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* Link improvements */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Navbar brand improvements */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-primary) !important;
+}
+
+/* Badge text improvements */
+.badge {
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.025em;
+}
+
+/* Image enhancements */
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: block;
+    margin: 0 auto;
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    display: block;
+}
+
+.airport-bg {
+    background: linear-gradient(135deg, var(--scallop-seashell) 0%, var(--pewter) 100%);
+}
+
+.runway-bg {
+    background: linear-gradient(135deg, var(--pewter) 0%, var(--gray) 100%);
+}
+
+/* Navigation (simple look): keep clean light background */
+.navbar {
+    background: var(--bg-primary) !important;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+
+/* Footer visibility fixes: ensure light text on dark background */
+footer.bg-dark {
+    background-color: #111827 !important; /* deep slate */
+    color: #f8f9fa !important;            /* light text */
+}
+footer.bg-dark h1,
+footer.bg-dark h2,
+footer.bg-dark h3,
+footer.bg-dark h4,
+footer.bg-dark h5,
+footer.bg-dark h6,
+footer.bg-dark p,
+footer.bg-dark span,
+footer.bg-dark i,
+footer.bg-dark a,
+footer.bg-dark small,
+footer.bg-dark .text-muted {
+    color: #f8f9fa !important;
+}
+footer.bg-dark a:hover { color: #e7d2cc !important; }

@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}Search Flights - Airline Market Analyzer{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-search"></i> Flight Search & Analysis
+        </h1>
+        <p class="lead">Search for specific routes to get detailed market analysis and pricing insights.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-plane"></i> Search Parameters
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('search') }}" id="searchForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="origin" class="form-label">Origin Airport</label>
+                            <select class="form-select" id="origin" name="origin" required>
+                                <option value="">Select Origin</option>
+                                <option value="SYD">Sydney (SYD)</option>
+                                <option value="MEL">Melbourne (MEL)</option>
+                                <option value="BNE">Brisbane (BNE)</option>
+                                <option value="PER">Perth (PER)</option>
+                                <option value="ADL">Adelaide (ADL)</option>
+                                <option value="CBR">Canberra (CBR)</option>
+                                <option value="DRW">Darwin (DRW)</option>
+                                <option value="HBA">Hobart (HBA)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="destination" class="form-label">Destination Airport</label>
+                            <select class="form-select" id="destination" name="destination" required>
+                                <option value="">Select Destination</option>
+                                <option value="SYD">Sydney (SYD)</option>
+                                <option value="MEL">Melbourne (MEL)</option>
+                                <option value="BNE">Brisbane (BNE)</option>
+                                <option value="PER">Perth (PER)</option>
+                                <option value="ADL">Adelaide (ADL)</option>
+                                <option value="CBR">Canberra (CBR)</option>
+                                <option value="DRW">Darwin (DRW)</option>
+                                <option value="HBA">Hobart (HBA)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="date_from" class="form-label">From Date</label>
+                            <input type="date" class="form-control" id="date_from" name="date_from" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="date_to" class="form-label">To Date</label>
+                            <input type="date" class="form-control" id="date_to" name="date_to" required>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary me-md-2" onclick="clearForm()">
+                            <i class="fas fa-eraser"></i> Clear
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="searchBtn">
+                            <i class="fas fa-search"></i> Search & Analyze
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-lightbulb"></i> Search Tips
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success"></i>
+                        Choose a date range of 7-14 days for best analysis
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success"></i>
+                        Popular routes provide more comprehensive data
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success"></i>
+                        Include weekends to see pricing patterns
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success"></i>
+                        Analysis includes AI-powered insights
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-star"></i> Popular Routes
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-primary btn-sm" onclick="setRoute('SYD', 'MEL')">
+                        <i class="fas fa-plane"></i> Sydney → Melbourne
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="setRoute('MEL', 'SYD')">
+                        <i class="fas fa-plane"></i> Melbourne → Sydney
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="setRoute('SYD', 'BNE')">
+                        <i class="fas fa-plane"></i> Sydney → Brisbane
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="setRoute('BNE', 'SYD')">
+                        <i class="fas fa-plane"></i> Brisbane → Sydney
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="setRoute('MEL', 'BNE')">
+                        <i class="fas fa-plane"></i> Melbourne → Brisbane
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add airplane image -->
+        <div class="mt-4 text-center">
+            <img src="{{ url_for('static', filename='images/aeroplane.jpg') }}" class="hero-image" alt="Airplane" style="max-height: 220px;">
+        </div>
+    </div>
+</div>
+
+<!-- Recent Searches -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-history"></i> Recent Market Data
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Route</th>
+                                <th>Average Price</th>
+                                <th>Flight Count</th>
+                                <th>Trend</th>
+                                <th>Last Updated</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>SYD → MEL</strong></td>
+                                <td>$165</td>
+                                <td>45 flights</td>
+                                <td><span class="badge bg-success">↗ +12%</span></td>
+                                <td>2 hours ago</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="setRoute('SYD', 'MEL')">
+                                        <i class="fas fa-search"></i> Analyze
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>MEL → SYD</strong></td>
+                                <td>$158</td>
+                                <td>42 flights</td>
+                                <td><span class="badge bg-secondary">→ Stable</span></td>
+                                <td>2 hours ago</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="setRoute('MEL', 'SYD')">
+                                        <i class="fas fa-search"></i> Analyze
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>SYD → BNE</strong></td>
+                                <td>$220</td>
+                                <td>28 flights</td>
+                                <td><span class="badge bg-warning">↘ -8%</span></td>
+                                <td>3 hours ago</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="setRoute('SYD', 'BNE')">
+                                        <i class="fas fa-search"></i> Analyze
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Set default dates
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date();
+        const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+        
+        document.getElementById('date_from').value = today.toISOString().split('T')[0];
+        document.getElementById('date_to').value = nextWeek.toISOString().split('T')[0];
+        
+        // Set URL parameters if present
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('origin')) {
+            document.getElementById('origin').value = urlParams.get('origin');
+        }
+        if (urlParams.get('destination')) {
+            document.getElementById('destination').value = urlParams.get('destination');
+        }
+    });
+    
+    function setRoute(origin, destination) {
+        document.getElementById('origin').value = origin;
+        document.getElementById('destination').value = destination;
+    }
+    
+    function clearForm() {
+        document.getElementById('searchForm').reset();
+        const today = new Date();
+        const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+        
+        document.getElementById('date_from').value = today.toISOString().split('T')[0];
+        document.getElementById('date_to').value = nextWeek.toISOString().split('T')[0];
+    }
+    
+    // Form validation
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+        const origin = document.getElementById('origin').value;
+        const destination = document.getElementById('destination').value;
+        
+        if (origin === destination) {
+            e.preventDefault();
+            alert('Origin and destination cannot be the same!');
+            return false;
+        }
+        
+        // Show loading state
+        const btn = document.getElementById('searchBtn');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+        btn.disabled = true;
+    });
+</script>
+{% endblock %}

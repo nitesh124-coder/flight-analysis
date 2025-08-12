@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Airline Market Analyzer{% endblock %}
+
+{% block content %}
+<div class="row mb-6">
+    <div class="col-12">
+        <div class="jumbotron text-center">
+            <h1 class="display-4 mb-3 text-light">
+                <i class="fas fa-chart-bar me-3"></i> Airline Market Intelligence
+            </h1>
+            <p class="lead mb-3 text-light">
+                Analyze airline booking trends and market demand to make informed business decisions.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a class="btn btn-primary btn-lg" href="{{ url_for('search') }}">
+                    <i class="fas fa-search me-2"></i> Start Analysis
+                </a>
+                <a class="btn btn-outline-primary btn-lg" href="{{ url_for('trends') }}">
+                    <i class="fas fa-chart-line me-2"></i> View Trends
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modern Stats Cards -->
+<div class="row mb-6">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card accent-primary">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="fas fa-plane fa-2x text-primary"></i>
+                </div>
+                <h3 class="card-title">1,250+</h3>
+                <p class="card-text text-muted">Daily Flights Tracked</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card accent-secondary">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="fas fa-route fa-2x text-success"></i>
+                </div>
+                <h3 class="card-title">25+</h3>
+                <p class="card-text text-muted">Popular Routes</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card accent-gray">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="fas fa-dollar-sign fa-2x text-info"></i>
+                </div>
+                <h3 class="card-title">$185</h3>
+                <p class="card-text text-muted">Average Ticket Price</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card accent-primary">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="fas fa-percentage fa-2x text-warning"></i>
+                </div>
+                <h3 class="card-title">15%</h3>
+                <p class="card-text text-muted">Weekend Premium</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Features with Images -->
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='images/airport.png') }}" class="card-image" alt="Airport Search">
+            <div class="card-body text-center">
+                <h5 class="card-title">Flight Search & Analysis</h5>
+                <p class="card-text">
+                    Search for specific routes and get detailed analysis of pricing trends, demand patterns, and market insights.
+                </p>
+                <a href="{{ url_for('search') }}" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search Flights
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='images/runway.jpg') }}" class="card-image" alt="Market Trends">
+            <div class="card-body text-center">
+                <h5 class="card-title">Market Trends</h5>
+                <p class="card-text">
+                    Explore overall market trends, popular routes, seasonal patterns, and pricing forecasts for strategic planning.
+                </p>
+                <a href="{{ url_for('search') }}" class="btn btn-success">
+                    <i class="fas fa-chart-line"></i> View Trends
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='images/aeroplane.jpg') }}" class="card-image" alt="AI Insights">
+            <div class="card-body text-center">
+                <h5 class="card-title">AI-Powered Insights</h5>
+                <p class="card-text">
+                    Get intelligent recommendations and business insights powered by advanced AI analysis of market data.
+                </p>
+                <a href="{{ url_for('about') }}" class="btn btn-info">
+                    <i class="fas fa-info-circle"></i> Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-clock"></i> Recent Market Activity
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Top Performing Routes Today</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>SYD → MEL</span>
+                                <span class="badge bg-success">+12% demand</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>MEL → SYD</span>
+                                <span class="badge bg-primary">Stable</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>SYD → BNE</span>
+                                <span class="badge bg-warning">+8% price</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Market Insights</h6>
+                        <div class="alert alert-info">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Tip:</strong> Weekend flights show 15% higher prices on average. 
+                            Consider adjusting hostel rates for weekend travelers.
+                        </div>
+                        <div class="alert alert-success">
+                            <i class="fas fa-trending-up"></i>
+                            <strong>Trend:</strong> Summer booking season approaching - 
+                            expect 20-30% increase in flight demand.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-bolt"></i> Quick Actions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="btn-group" role="group">
+                    <a href="{{ url_for('search') }}?origin=SYD&destination=MEL" class="btn btn-outline-primary">
+                        <i class="fas fa-search"></i> SYD → MEL
+                    </a>
+                    <a href="{{ url_for('search') }}?origin=MEL&destination=SYD" class="btn btn-outline-primary">
+                        <i class="fas fa-search"></i> MEL → SYD
+                    </a>
+                    <a href="{{ url_for('search') }}?origin=SYD&destination=BNE" class="btn btn-outline-primary">
+                        <i class="fas fa-search"></i> SYD → BNE
+                    </a>
+                    <a href="{{ url_for('api_data') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-download"></i> Export Data
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Add some interactivity to the dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate the stats cards
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            }, index * 100);
+        });
+    });
+</script>
+{% endblock %}

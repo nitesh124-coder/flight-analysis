@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block title %}About - Airline Market Analyzer{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-info-circle"></i> About Airline Market Analyzer
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5>Project Overview</h5>
+                <p class="lead">
+                    The Airline Market Demand Analyzer is a comprehensive web application designed to help hostel businesses 
+                    understand airline booking market trends and make informed decisions about their operations.
+                </p>
+                
+                <h6>Key Features</h6>
+                <ul>
+                    <li><strong>Data Collection:</strong> Scrapes publicly available airline booking data and integrates with free APIs</li>
+                    <li><strong>AI-Powered Analysis:</strong> Uses advanced AI to process data and extract actionable insights</li>
+                    <li><strong>Interactive Visualizations:</strong> Charts and graphs for easy data interpretation</li>
+                    <li><strong>Market Trends:</strong> Identifies popular routes, pricing patterns, and demand cycles</li>
+                    <li><strong>Business Intelligence:</strong> Provides specific recommendations for hostel operations</li>
+                </ul>
+                
+                <h6>How It Works</h6>
+                <ol>
+                    <li><strong>Data Collection:</strong> The system collects flight data from multiple sources including APIs and web scraping</li>
+                    <li><strong>Processing:</strong> Raw data is cleaned, standardized, and analyzed for patterns</li>
+                    <li><strong>AI Analysis:</strong> Advanced algorithms identify trends and generate insights</li>
+                    <li><strong>Visualization:</strong> Results are presented through interactive charts and reports</li>
+                    <li><strong>Recommendations:</strong> Specific business advice is provided based on the analysis</li>
+                </ol>
+                
+                <h6>Technology Stack</h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Backend</h6>
+                        <ul>
+                            <li>Python 3.8+</li>
+                            <li>Flask Web Framework</li>
+                            <li>Pandas for data processing</li>
+                            <li>BeautifulSoup for web scraping</li>
+                            <li>OpenAI API for insights</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Frontend</h6>
+                        <ul>
+                            <li>Bootstrap 5 for responsive design</li>
+                            <li>Plotly.js for interactive charts</li>
+                            <li>Chart.js for additional visualizations</li>
+                            <li>Font Awesome for icons</li>
+                            <li>Custom CSS and JavaScript</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-question-circle"></i> Frequently Asked Questions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                How accurate is the flight data?
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                The application uses multiple data sources including real APIs and web scraping to ensure accuracy. 
+                                Data is updated regularly and cross-validated across sources. For demonstration purposes, 
+                                some sample data is also included.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                What APIs are used for data collection?
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                The system integrates with RapidAPI (Skyscanner), Amadeus API for flight data, 
+                                and OpenAI API for intelligent analysis. All APIs used are either free or have 
+                                generous free tiers suitable for business use.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                How can hostels use this data?
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Hostels can use this data to understand travel patterns, adjust pricing strategies, 
+                                plan marketing campaigns, choose optimal locations, and provide better services to guests 
+                                based on flight availability and pricing trends.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                                Is the application mobile-friendly?
+                            </button>
+                        </h2>
+                        <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes! The application is built with responsive design principles and works seamlessly 
+                                on desktop, tablet, and mobile devices. All charts and visualizations are optimized 
+                                for different screen sizes.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-cogs"></i> System Status
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>Data Collection</span>
+                    <span class="badge bg-success">Online</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>AI Analysis</span>
+                    <span class="badge bg-success">Active</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>API Integration</span>
+                    <span class="badge bg-success">Connected</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>Database</span>
+                    <span class="badge bg-success">Operational</span>
+                </div>
+                
+                <hr>
+                
+                <h6>Quick Stats</h6>
+                <ul class="list-unstyled">
+                    <li><strong>Data Sources:</strong> 3 active</li>
+                    <li><strong>Routes Monitored:</strong> 25+</li>
+                    <li><strong>Daily Updates:</strong> Every 4 hours</li>
+                    <li><strong>Uptime:</strong> 99.9%</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-envelope"></i> Contact & Support
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Need help or have questions about the application?</p>
+                
+                <div class="d-grid gap-2">
+                    <a href="mailto:support@airlineanalyzer.com" class="btn btn-outline-primary">
+                        <i class="fas fa-envelope"></i> Email Support
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary">
+                        <i class="fas fa-book"></i> Documentation
+                    </a>
+                    <a href="#" class="btn btn-outline-info">
+                        <i class="fas fa-bug"></i> Report Issue
+                    </a>
+                </div>
+                
+                <hr>
+                
+                <h6>Development Team</h6>
+                <p class="small text-muted">
+                    Built with ❤️ for the hostel industry<br>
+                    Version 1.0.0 - {{ current_year }}
+                </p>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-rocket"></i> Getting Started
+                </h5>
+            </div>
+            <div class="card-body">
+                <ol class="small">
+                    <li>Start with the <a href="{{ url_for('index') }}">Dashboard</a> for an overview</li>
+                    <li>Use <a href="{{ url_for('search') }}">Flight Search</a> for specific routes</li>
+                    <li>Check <a href="{{ url_for('trends') }}">Market Trends</a> for insights</li>
+                    <li>Export data for further analysis</li>
+                    <li>Set up regular monitoring for your key routes</li>
+                </ol>
+                
+                <div class="d-grid">
+                    <a href="{{ url_for('search') }}" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Start Analyzing
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add airplane image -->
+        <div class="mt-4 text-center">
+            <img src="{{ url_for('static', filename='images/runway.jpg') }}" class="hero-image" alt="Airport Runway" style="max-height: 220px;">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Add some interactivity
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate status badges
+        const badges = document.querySelectorAll('.badge');
+        badges.forEach((badge, index) => {
+            setTimeout(() => {
+                badge.style.opacity = '0';
+                badge.style.transform = 'scale(0.8)';
+                badge.style.transition = 'all 0.3s ease';
+                setTimeout(() => {
+                    badge.style.opacity = '1';
+                    badge.style.transform = 'scale(1)';
+                }, 100);
+            }, index * 200);
+        });
+    });
+</script>
+{% endblock %}
