@@ -100,40 +100,6 @@ class APIIntegrator:
                 insights = {
                     "demand_trends": ai_text[:200] + "...",
                     "pricing_insights": "AI analysis provided",
-    def _get_hf_insights(self, data: Dict, token: str) -> Dict:
-        """Get insights from a free Hugging Face model (e.g., text summarization) as a fallback.
-        This keeps costs at zero when OpenAI is not configured.
-        """
-        summary = self._prepare_data_summary(data)
-        # Use a lightweight summarization model
-        api_url = 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn'
-        headers = {"Authorization": f"Bearer {token}"}
-        payload = {"inputs": summary[:2000]}
-        try:
-            r = requests.post(api_url, headers=headers, json=payload, timeout=20)
-            r.raise_for_status()
-            out = r.json()
-            text = ''
-            if isinstance(out, list) and out and 'summary_text' in out[0]:
-                text = out[0]['summary_text']
-            elif isinstance(out, dict) and 'generated_text' in out:
-                text = out['generated_text']
-            else:
-                text = str(out)[:500]
-            insights = {
-                "demand_trends": text[:200] + ("..." if len(text) > 200 else ""),
-                "pricing_insights": "Summarized insights derived from public model",
-                "route_recommendations": "Focus on busiest domestic routes and stable corridors",
-                "business_recommendations": "Adjust hostel pricing around peak/low seasons; partner on top routes",
-                "market_outlook": "Moderately positive outlook based on summarized trends",
-                "source": "huggingface_api",
-                "generated_at": datetime.now().isoformat()
-            }
-            return insights
-        except Exception as e:
-            logger.error(f"HF Inference API error: {e}")
-            raise
-
                     "route_recommendations": "See full analysis",
                     "business_recommendations": "Detailed recommendations available",
                     "market_outlook": "Positive outlook based on data",
@@ -181,6 +147,39 @@ class APIIntegrator:
             summary += f"- Weekday average: ${weekend_premium.get('weekday_avg', 0):.2f}\n"
 
         return summary
+
+    def _get_hf_insights(self, data: Dict, token: str) -> Dict:
+        """Get insights from a free Hugging Face model (e.g., text summarization) as a fallback.
+        This keeps costs at zero when OpenAI is not configured.
+        """
+        summary = self._prepare_data_summary(data)
+        api_url = 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn'
+        headers = {"Authorization": f"Bearer {token}"}
+        payload = {"inputs": summary[:2000]}
+        try:
+            r = requests.post(api_url, headers=headers, json=payload, timeout=20)
+            r.raise_for_status()
+            out = r.json()
+            text = ''
+            if isinstance(out, list) and out and 'summary_text' in out[0]:
+                text = out[0]['summary_text']
+            elif isinstance(out, dict) and 'generated_text' in out:
+                text = out['generated_text']
+            else:
+                text = str(out)[:500]
+            insights = {
+                "demand_trends": text[:200] + ("..." if len(text) > 200 else ""),
+                "pricing_insights": "Summarized insights derived from public model",
+                "route_recommendations": "Focus on busiest domestic routes and stable corridors",
+                "business_recommendations": "Adjust hostel pricing around peak/low seasons; partner on top routes",
+                "market_outlook": "Moderately positive outlook based on summarized trends",
+                "source": "huggingface_api",
+                "generated_at": datetime.now().isoformat()
+            }
+            return insights
+        except Exception as e:
+            logger.error(f"HF Inference API error: {e}")
+            raise
 
     def _generate_rule_based_insights(self, data: Dict) -> Dict:
         """Generate insights using rule-based analysis (fallback when AI API unavailable)"""
